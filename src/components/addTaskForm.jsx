@@ -4,6 +4,8 @@ import Field from "./Field"
 function AddTaskForm (props) {
     const {
         addTask,
+        newTaskTitle,
+        setNewTaskTitle
     }= props
 
     const onSubmit = (event) => {
@@ -18,6 +20,8 @@ function AddTaskForm (props) {
                label = "new task title"
                id = 'new-task'
                type = 'text'
+               value = {newTaskTitle}
+               onSearchInput = {setNewTaskTitle}
             />
             <Button type='submit'/>
         </form>

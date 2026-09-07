@@ -6,6 +6,7 @@ function Field (props) {
     label,
     type,
     onSearchInput,
+    value,
   } = props;
 
     return(
@@ -22,6 +23,7 @@ function Field (props) {
             placeholder=" "
             autoComplete="off"
             type = {type}
+            value={value}
             onInput = {(evt)=> onSearchInput(evt.target.value)}
           />
         </div>
