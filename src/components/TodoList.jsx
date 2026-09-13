@@ -1,14 +1,13 @@
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem"
 
-const hasTask = true;
 
+function TodoList () {
 
+    const tasks = useSelector(state => state.tasks);
 
-function TodoList ({ tasks, onDeleteButtonClick, onTaskCompleteChange }) {
-
-
-    if(!hasTask) {
-        return <div className="todo__empty-message"></div>
+    if(tasks.length === 0) {
+        return <div className="todo__empty-message">Задач нет</div>
     }
 
     return (
@@ -21,8 +20,6 @@ function TodoList ({ tasks, onDeleteButtonClick, onTaskCompleteChange }) {
                     id = {task.id}
                     title = {task.title}
                     isDone = {task.isDone}
-                    onDeleteButtonClick = {onDeleteButtonClick}
-                    onTaskCompleteChange = {onTaskCompleteChange}
                 />
             ))}
         </ul>

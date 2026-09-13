@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { deleteTasks, toggleTask } from "../store/slice/tasksSlice";
+
 function TodoItem (props) {
 
   const {
@@ -5,14 +8,22 @@ function TodoItem (props) {
     id,
     title,
     isDone,
-    onDeleteButtonClick,
-    onTaskCompleteChange,
   } = props
+
+  const dispatch = useDispatch();
+
+  const handleDeleteTask = () => {
+    dispatch(deleteTasks(id));
+  }
+
+  const handleChangeTask = () => {
+    dispatch(toggleTask(id));
+  }
 
     return (
         <li className={`todo__item ${className}`}>
           <input
-            onChange={(evt) => onTaskCompleteChange(id, evt.target.checked)}
+            onChange={handleChangeTask}
             className="todo-item__checkbox"
             id={id}
             type="checkbox"
@@ -25,7 +36,7 @@ function TodoItem (props) {
             {title}
           </label>
           <button
-            onClick = {() => onDeleteButtonClick(id)}
+            onClick = {handleDeleteTask}
             className="todo-item__delete-button"
             aria-label="Delete"
             title="Delete"

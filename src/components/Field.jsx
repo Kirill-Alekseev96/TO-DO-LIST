@@ -8,6 +8,7 @@ function Field (props) {
     onSearchInput,
     value,
   } = props;
+  
 
     return(
         <div className = {`field ${className}`}>
