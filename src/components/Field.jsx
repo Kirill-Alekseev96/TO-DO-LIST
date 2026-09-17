@@ -5,7 +5,7 @@ function Field (props) {
     id,
     label,
     type,
-    onSearchInput,
+    onTaskInput,
     value,
   } = props;
   
@@ -25,7 +25,7 @@ function Field (props) {
             autoComplete="off"
             type = {type}
             value={value}
-            onInput = {(evt)=> onSearchInput(evt.target.value)}
+            onChange = {(evt)=> onTaskInput(evt.target.value)}
           />
         </div>
     )

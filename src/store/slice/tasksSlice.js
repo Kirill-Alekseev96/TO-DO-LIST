@@ -23,12 +23,14 @@ const tasksSlice = createSlice({
       state.map((task) => task.id === action.payload ? task.isDone = !task.isDone : task);
     },
 
-    // searchTask:(state, action) => {
-    //   return state.filter((task) => task.title.toUpperCase().incluses(action.payload.toUpperCase()));
-    // },
+    descriptionTask:(state, action) => {
+      const {id, description} = action.payload;
+      const task = state.find(t => t.id === id);
+      if (task) task.description = description;
+    },
   },
 });
 
-export const { addTasks, deleteTasks, toggleTask, deleteAllTasks, searchTask } = tasksSlice.actions;
+export const { addTasks, deleteTasks, toggleTask, deleteAllTasks, searchTask, descriptionTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer

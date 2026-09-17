@@ -1,6 +1,6 @@
 import Field from "./Field"
 
-function SearchTaskForm () {
+function SearchTaskForm ({onSetQuery, query} ) {
 
     return (
         <form className="todo__form">
@@ -8,7 +8,9 @@ function SearchTaskForm () {
                 className = 'todo__field'
                 label = 'Search task'
                 id = 'search-task'  
-                type = 'search'       
+                type = 'search'  
+                value = {query}
+                onTaskInput = {onSetQuery}     
             />
         </form>
     )

@@ -7,8 +7,8 @@ import { addTasks } from "../store/slice/tasksSlice.js";
 function AddTaskForm () {
 
     const [newTaskTitle, setNewTaskTitle] = useState('');
+
     const dispatch = useDispatch();
-    
 
     const handleAddTask  = () => {
 
@@ -16,7 +16,8 @@ function AddTaskForm () {
             const newTask = {
                 id: crypto?.randomUUID() ?? Date.now().toString(),
                 title: newTaskTitle,
-                isDone: false
+                isDone: false,
+                description: null,
             }
             dispatch(addTasks(newTask));
             setNewTaskTitle('');
@@ -36,9 +37,12 @@ function AddTaskForm () {
                id = 'new-task'
                type = 'text'
                value = {newTaskTitle}
-               onSearchInput = {setNewTaskTitle}
+               onTaskInput = {setNewTaskTitle}
             />
-            <Button type='submit'/>
+            <Button 
+            type='submit'
+            text = 'Add'
+            />
         </form>
     )
 }
