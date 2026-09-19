@@ -1,12 +1,18 @@
-function TodoInfo (props) {
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllTasks } from "../store/slice/tasksSlice";
 
-    const {
-        total,
-        done,
-        onDeleteAllButtonClick,
-    } = props;
+function TodoInfo () {
+
+    const tasks = useSelector(state => state.tasks);
+    const dispatch = useDispatch();
+    const total = tasks.length;
+    const done = tasks.filter(task => task.isDone).length;
 
     const hasTask = total > 0;
+
+    const handleDeleteAll = () => {
+        dispatch(deleteAllTasks());
+    }
 
     return (
         <div className="todo__info">
@@ -14,7 +20,7 @@ function TodoInfo (props) {
                 Done: {done} from{total}
             </div>
             {hasTask && (
-                <button onClick = {onDeleteAllButtonClick} className="todo__delete-all-button" type="button">
+                <button  className="todo__delete-all-button" type="button" onClick = {handleDeleteAll}>
                     Delete all
                 </button>
             )}

@@ -3,10 +3,12 @@ function Button (props) {
     const {
         className,
         type,
+        text,
+        onClick,
     } = props;
 
     return (
-        <button className={` button ${className}`} type={type}>Add</button>
+        <button onClick={onClick} className={`button ${className}`} type={type}>{text}</button>
     )
 }
 

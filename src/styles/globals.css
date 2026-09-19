@@ -14,6 +14,10 @@ button {
   transition-duration: var(--transition-duration);
 }
 
+textarea {
+    resize: none;
+}
+
 :focus-visible {
   outline: 2px dashed var(--color-black);
   outline-offset: 4px;

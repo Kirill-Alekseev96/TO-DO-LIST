@@ -1,28 +1,30 @@
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem"
 
-const hasTask = true;
+function TodoList ({query}) {
 
 
+    const tasks = useSelector(state => state.tasks);
 
-function TodoList ({ tasks, onDeleteButtonClick, onTaskCompleteChange }) {
+    const filteredTasks = query.length > 0 ? tasks.filter((task) => task.title.toLowerCase().includes(query.toLowerCase())) : tasks;
 
 
-    if(!hasTask) {
-        return <div className="todo__empty-message"></div>
+    if(filteredTasks.length === 0) {
+        return <div className="todo__empty-message">Задач нет</div>
     }
 
     return (
         <ul className="todo__list">
             
-            {tasks.map((task) => (
+            {filteredTasks.map((task) => (
                 <TodoItem
                     key = {task.id}
                     className = 'todo-item'
                     id = {task.id}
                     title = {task.title}
                     isDone = {task.isDone}
-                    onDeleteButtonClick = {onDeleteButtonClick}
-                    onTaskCompleteChange = {onTaskCompleteChange}
+                    description = {task.description}
+                    query = {query}
                 />
             ))}
         </ul>
