@@ -1,0 +1,10 @@
+.description__textarea {
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+.description__textarea:focus {
+    border: 2px solid black;
+    outline: none;
+}

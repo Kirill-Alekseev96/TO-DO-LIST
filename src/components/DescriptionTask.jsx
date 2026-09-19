@@ -24,6 +24,7 @@ function DescriptionTask({id,onChangeDescription,description}) {
         <div className="description">
             <label htmlFor="story">Описание задачи:</label>
             <textarea 
+                className="description__textarea"
                 id="story" 
                 name="story" 
                 rows="5" cols="37"
