@@ -1,6 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+function loadTasks() {
+  try {
+    const raw = localStorage.getItem('tasks');
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    console.error('Не удалось загрузить задачи', e);
+    return [];
+  }
+}
+
+const initialState = loadTasks();
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -31,6 +43,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { addTasks, deleteTasks, toggleTask, deleteAllTasks, searchTask, descriptionTask } = tasksSlice.actions;
+export const { addTasks, deleteTasks, toggleTask, deleteAllTasks, searchTask, descriptionTask, filterTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer

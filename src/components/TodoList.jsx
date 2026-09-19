@@ -6,17 +6,17 @@ function TodoList ({query}) {
 
     const tasks = useSelector(state => state.tasks);
 
+    const filteredTasks = query.length > 0 ? tasks.filter((task) => task.title.toLowerCase().includes(query.toLowerCase())) : tasks;
 
-    const visibleTasks = query.length > 0 ? tasks.filter((task) => task.title.toLowerCase().includes(query.trim().toLowerCase())) : tasks;
 
-    if(visibleTasks.length === 0) {
+    if(filteredTasks.length === 0) {
         return <div className="todo__empty-message">Задач нет</div>
     }
 
     return (
         <ul className="todo__list">
             
-            {visibleTasks.map((task) => (
+            {filteredTasks.map((task) => (
                 <TodoItem
                     key = {task.id}
                     className = 'todo-item'
@@ -24,6 +24,7 @@ function TodoList ({query}) {
                     title = {task.title}
                     isDone = {task.isDone}
                     description = {task.description}
+                    query = {query}
                 />
             ))}
         </ul>

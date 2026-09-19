@@ -3,20 +3,22 @@ import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { descriptionTask } from "../store/slice/tasksSlice";
 
-function DescriptionTask({description, onChangeDescription, id}) {
+function DescriptionTask({id,onChangeDescription,description}) {
 
 
-    const [isDisabled, setIsDisabled] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
+
     const dispatch = useDispatch();
 
     const handleSave = () => {
         setIsDisabled(true);
-        dispatch(descriptionTask(id, description));
+        dispatch(descriptionTask({id, description}));
     }
 
     const handleEdit = () => {
         setIsDisabled(false);
     }
+
 
     return (
         <div className="description">

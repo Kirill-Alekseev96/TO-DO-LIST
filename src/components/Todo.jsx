@@ -7,6 +7,7 @@ import TodoList from "./TodoList"
 
 function Todo () {
     
+    //для сортировки задач
     const [query, setQuery] = useState('');    
 
     return (

@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { deleteTasks, toggleTask } from "../store/slice/tasksSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTasks, toggleTask, } from "../store/slice/tasksSlice";
 import DescriptionTask from "./descriptionTask";
 import { useState } from "react";
 
@@ -10,13 +10,15 @@ function TodoItem (props) {
     id,
     title,
     isDone,
+    
   } = props
 
 
   const [isOpen, setIsOpen] = useState(false);
-  const [description, setDescription] = useState(null);
+  const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
+  const descriptionState = useSelector(state => state.tasks.find(task => task.id === id).description);
 
   const handleDeleteTask = () => {
     dispatch(deleteTasks(id));
@@ -29,6 +31,7 @@ function TodoItem (props) {
 
   const handleDescription = () => {
     setIsOpen(!isOpen);
+    setDescription(descriptionState ?? '');
   }
 
     return (
@@ -50,9 +53,9 @@ function TodoItem (props) {
 
           <button
             onClick = {handleDescription}
-            className="todo-item__delete-button"
-            aria-label="Delete"
-            title="Delete"
+            className="todo-item__description-button"
+            aria-label="Description"
+            title="Description"
           >
             <svg
               width="20"
@@ -103,7 +106,7 @@ function TodoItem (props) {
           </button>
         </li>
 
-        {isOpen && <DescriptionTask description = {description} onChangeDescription = {setDescription} id = {id}/>}
+        {isOpen && <DescriptionTask id = {id} description = {description} onChangeDescription = {setDescription}/>}
        </> 
     )
 }
