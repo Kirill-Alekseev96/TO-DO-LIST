@@ -23,7 +23,6 @@ const tasksSlice = createSlice({
     },
 
     deleteTasks:(state, action) => {
-      console.log(action.payload);
         return state.filter((task) => task.id !== action.payload);
     },
 
@@ -32,7 +31,8 @@ const tasksSlice = createSlice({
     },
 
     toggleTask:(state, action) => {
-      state.map((task) => task.id === action.payload ? task.isDone = !task.isDone : task);
+      const task = state.find(t => t.id === action.payload);
+      if (task) task.isDone = !task.isDone;
     },
 
     descriptionTask:(state, action) => {

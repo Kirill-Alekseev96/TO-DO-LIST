@@ -27,7 +27,7 @@ function DescriptionTask({id,onChangeDescription,description}) {
                 className="description__textarea"
                 id="story" 
                 name="story" 
-                rows="5" cols="37"
+                rows="5"
                 maxLength  = '150'
                 spellCheck
                 disabled = {isDisabled}
